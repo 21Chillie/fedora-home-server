@@ -1,0 +1,19 @@
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:sts
+    restart: always
+    command: --http-enabled
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /srv/docker/volumes/portainer:/data
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
+    name: dokploy-network
