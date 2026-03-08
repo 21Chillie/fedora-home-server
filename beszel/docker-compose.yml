@@ -1,0 +1,27 @@
+services:
+  beszel:
+    container_name: beszel
+    image: henrygd/beszel:latest
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - /srv/docker/volumes/beszel:/beszel/data
+    networks:
+      - dokploy-network
+
+  beszel-agent:
+    container_name: beszel-agent
+    image: henrygd/beszel-agent:latest
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      PORT: ${AGENT_PORT}
+      KEY: ${AGENT_KEY}
+
+networks:
+  dokploy-network:
+    external: true
+    name: dokploy-network
