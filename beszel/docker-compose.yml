@@ -9,6 +9,8 @@ services:
       - /srv/docker/volumes/beszel:/data
     networks:
       - dokploy-network
+    environment:
+      - APP_URL=${APP_URL}
 
   beszel-agent:
     container_name: beszel-agent
