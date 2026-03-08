@@ -22,6 +22,7 @@ services:
     environment:
       PORT: ${AGENT_PORT}
       KEY: ${AGENT_KEY}
+      HUB_URL: ${HUB_URL}
 
 networks:
   dokploy-network:
