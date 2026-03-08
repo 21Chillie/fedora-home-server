@@ -23,6 +23,7 @@ services:
       PORT: ${AGENT_PORT}
       KEY: ${AGENT_KEY}
       HUB_URL: ${HUB_URL}
+      TOKEN: ${AGENT_TOKEN}
 
 networks:
   dokploy-network:
