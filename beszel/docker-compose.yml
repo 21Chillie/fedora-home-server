@@ -6,7 +6,7 @@ services:
     ports:
       - "8090:8090"
     volumes:
-      - /srv/docker/volumes/beszel:/beszel/data
+      - /srv/docker/volumes/beszel:/data
     networks:
       - dokploy-network
 
