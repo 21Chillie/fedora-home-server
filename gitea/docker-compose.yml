@@ -1,0 +1,28 @@
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    ports:
+      - '3001:3000'
+      - '2223:22'
+    volumes:
+      - /srv/docker/volumes/gitea/data:/data
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=postgres
+      - GITEA__database__HOST=${DB_HOST}:5432
+      - GITEA__database__NAME=${DB_DATABASE}
+      - GITEA__database__USER=${DB_USERNAME}
+      - GITEA__database__PASSWD=${DB_PASSWORD}
+      - GITEA__server__DOMAIN=${GITEA_DOMAIN}
+      - GITEA__server__ROOT_URL=https://${GITEA_DOMAIN}
+      - GITEA__server__SSH_DOMAIN=${GITEA_DOMAIN}
+      - GITEA__server__SSH_PORT=2223
+    restart: unless-stopped
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
