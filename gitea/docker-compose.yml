@@ -1,12 +1,16 @@
 services:
   gitea:
-    image: gitea/gitea:latest
+    image: docker.gitea.com/gitea:latest
     container_name: gitea
     ports:
       - '3001:3000'
       - '2223:22'
     volumes:
       - /srv/docker/volumes/gitea/data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
     environment:
       - USER_UID=1000
       - USER_GID=1000
